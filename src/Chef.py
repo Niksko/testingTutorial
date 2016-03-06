@@ -1,8 +1,11 @@
-from Dish import Dish
+from Dish import Dish, MAX_QUALITY, MIN_QUALITY
 from random import gauss
 
 # Define the standard deviation of the normal distribution used to determine quality
 QUALITY_SIGMA = 2
+# Define the max and minimum possible skills
+MAX_SKILL = 10
+MIN_SKILL = 0
 
 class Chef:
 
@@ -21,8 +24,8 @@ class Chef:
         """
         self.name = name
 
-        if (skill < 0 or skill > 10):
-            raise ValueError("Skill must be between 0 and 10 inclusive")
+        if (skill < MIN_SKILL or skill > MAX_SKILL):
+            raise ValueError("Skill must be between %d and %d inclusive" % (MIN_SKILL, MAX_SKILL))
         else:
             self.skill = skill
 
@@ -38,7 +41,12 @@ class Chef:
         skill of the chef with standard deviation 2
         """
         if dish in self.dishes:
+            # We want quality to be an integer, minimum of MIN_QUALITY, max of MAX_QUALITY
             quality = gauss(self.skill, QUALITY_SIGMA)
+            if quality < MIN_QUALITY:
+                quality = MIN_QUALITY
+            else if quality > MAX_QUALITY:
+                quality = MAX_QUALITY
             return Dish(name=dish, quality=quality)
         else:
             raise UnkownDishException("This dish is not known by chef %s" % self.name)
