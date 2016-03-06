@@ -13,9 +13,9 @@ class Waiter:
         """
         self.name = name
 
-    def placeOrder(self, dishName, chefs):
+    def takeOrder(self, dishName, chefs):
         """
-        Try to place an order for a given dish, given some list of chefs. Return the dish to the customer
+        Try to take an order for a given dish, given some list of chefs. Return the dish to the customer
 
         Arguments:
             dishName (String): The name of the dish that has been ordered
