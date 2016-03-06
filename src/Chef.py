@@ -25,12 +25,12 @@ class Chef:
         self.name = name
 
         if (skill < MIN_SKILL or skill > MAX_SKILL):
-            raise ValueError("Skill must be between %d and %d inclusive" % (MIN_SKILL, MAX_SKILL))
+            raise ValueError("Skill must be between %d and %d inclusive, got value %d" % (MIN_SKILL, MAX_SKILL, skill))
         else:
             self.skill = skill
 
         if not isinstance(dishes, list):
-            raise TypeError("Dishes must be of type list")
+            raise TypeError("Dishes must be of type list, got value of type %s" % str(type(dishes)))
         else:
             self.dishes = dishes
 
@@ -49,4 +49,4 @@ class Chef:
                 quality = MAX_QUALITY
             return Dish(name=dish, quality=quality)
         else:
-            raise UnkownDishException("This dish is not known by chef %s" % self.name)
+            raise UnkownDishException("This dish is not known by chef %s. Known dishes are: %s" % (self.name, str(self.dishes))
