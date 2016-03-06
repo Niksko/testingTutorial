@@ -31,3 +31,6 @@ class Customer:
             return "Yum, that %s was delicious!" % food.name
         else:
             raise FoodUnacceptableException("That %s was not of acceptable quality. I expect the food to be of at quality at least %d" % (food.name, self.minimumQuality))
+
+    def orderFavourite(self, restaurant):
+        return self.orderDish(restaurant, self.favouriteDish)
